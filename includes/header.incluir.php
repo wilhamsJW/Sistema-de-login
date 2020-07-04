@@ -1,3 +1,5 @@
+<?php session_start() //estou usando uma var de session no arquivo create.php e tem q inicia-la aqui, toda vez q se usa uma var de session ela precisa ser iniciada ?>
+
 <!DOCTYPE html>
   <html>
     <head>
