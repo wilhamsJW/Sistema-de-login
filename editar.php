@@ -12,7 +12,10 @@
 <?php
     include_once 'banco_de_dados/conexao.php';
     $id = filter_input(INPUT_GET, 'id', FILTER_SANITIZE_NUMBER_INT);//pegar com filtros é a maneira correta de acessar esses dados, essa maneira não é tao usada -> $id = $_GET["id"]
-    //$querySelect = $link->("select * from tb_clientes where id='$id' "); //essa linha não foi aceita nesse código
+    //$querySelect = $link->("select * from tb_clientes where id='$id' "); //essa linha não foi aceita nesse código]
+
+    $_SESSION['id'] = $id ; //guardando o id de cada item a ser editado ou ecluido na var $_SESSION
+
     $query_ = ("SELECT * FROM tb_clientes where id='$id'");
     $connectt = mysqli_query($link, $query_);
 
@@ -29,18 +32,11 @@
 <!--Formulário de cadastro-->
 <div class="row container">
       <p>&nbsp;</p> <!--Acrescentará uma linha vazia ou um espaço-->
-      <form action="banco_de_dados/create.php" method="POST" class="col s12">
+      <form action="banco_de_dados/update.php" method="POST" class="col s12">
         <fieldset class="formulario" style="padding: 75px">
           <legend><img src="img/avatar.jpg" alt="[imagem]" width="100"></legend>
           <h5 class="light center">Cadastro de clientes</h5>
-         
-          
-          <!--< ?php 
-              if(isset($_SESSION['msg'])):
-                echo $_SESSION['msg'];
-                  session_unset();//para limpar A SESSÃO, EVITA Q ESSA MSG FIQUE SENDO MOSTRADA O TEMPO TODO AO USUÁRIO, UNSET RESETA A VAR $SESSION
-              endif;
-          ?>--> 
+    
 
           <!--Campo Nome-->
           <div class="input_field col s12">
@@ -65,7 +61,7 @@
 
           <!--Botôes-->
           <div class="input-field col s12">
-            <input type="submit" value="Alterar" class="btn blue">
+            <input  type="submit" value="Alterar" class="btn blue">
             <a href="consultas.php" class="btn red">Cancelar</a>
           </div>
 
